@@ -30,6 +30,12 @@ ul {
 	padding-top: 3.0%;
 }
 
+#header .header-link {
+	color: #E4C311;
+	font-family: 'Josefin Slab', serif;
+	font-size: 1.45em;
+}
+
 #header #login img {
 	width: 32px;
 	height: 32px;
@@ -45,12 +51,12 @@ ul {
 	box-shadow: 0px 1px 1px #848789;
 }
 
-#about, #help {
+#about, #help, #user {
 	padding-left: 3.5%;
 	padding-top: 1.9%;
 }
 
-#about h2, #help h2 {
+#about h2, #help h2, #user h2 {
 	font-size: 1.94em;
 	padding-bottom: 0.9%;
 }
@@ -93,6 +99,23 @@ ul {
 	display: block;
 }
 
+#user button {
+	color: #95989A;
+	width: 90%;
+	display: block;
+	margin: auto;
+	background-color: #EFEFEF;
+	padding: 12px 0;
+	font-size: 1.5em;
+	font-family: 'Josefin Slab', serif;
+	border: 2px solid #EFEFEF;
+	cursor: pointer;
+}
+
+#user button:hover {
+	border: 2px solid #B7BABC;
+}
+
 #footer {
 	padding-top: 1.7%;
 	padding-left: 3.5%;
@@ -109,5 +132,11 @@ ul {
 @media(max-width: 780px) {
 	#bg {
 		display: none;
+	}
+}
+
+@media(max-width: 450px) {
+	#header hr {
+		width: 350px;
 	}
 }
