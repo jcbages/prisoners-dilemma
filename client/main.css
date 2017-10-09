@@ -6,7 +6,7 @@
 }
 
 h1, h2 {
-	font-family: 'Courier New';
+	font-family: 'Josefin Slab', serif;
 }
 
 li {
@@ -37,11 +37,11 @@ ul {
 }
 
 #header h1 {
-	font-size: 2.3em;
+	font-size: 2.55em;
 }
 
 #header hr {
-	width: 500px;
+	width: 450px;
 	box-shadow: 0px 1px 1px #848789;
 }
 
@@ -51,7 +51,7 @@ ul {
 }
 
 #about h2, #help h2 {
-	font-size: 1.6em;
+	font-size: 1.94em;
 	padding-bottom: 0.9%;
 }
 
