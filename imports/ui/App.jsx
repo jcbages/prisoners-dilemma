@@ -14,7 +14,8 @@ export default class App extends Component {
 
 		this.state = {
 			inSession: false,
-			inGame: false
+			inGame: false,
+			isConnected: false
 		};
 
 		this.login = this.login.bind(this);
@@ -43,7 +44,11 @@ export default class App extends Component {
 
 	getGame() {
 		return (
-			<Game gameMessage={this.state.gameMessage} />
+			<Game
+				isConnected={this.state.isConnected}
+				gameMessage={this.state.gameMessage}
+				footerMessage={this.state.footerMessage}
+				years={this.state.years} />
 		);
 	}
 
@@ -60,7 +65,7 @@ export default class App extends Component {
 	}
 
 	enterGame() {
-		this.setState({inGame: true, round: 1});
+		this.setState({inGame: true, round: 1, years: 0, isConnected: false});
 		this.updateGameMessage('Please wait while we find a prisoner for you');
 	}
 

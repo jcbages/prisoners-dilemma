@@ -32,7 +32,7 @@ export default class Header extends Component {
 		let leftButton = this.getLeftButton();
 		let rightButton = this.getRightButton();
 
-		let title = 'The Prisonner\'s Dilemma';
+		let title = 'The Prisoner\'s Dilemma';
 		if (this.props.title) title = this.props.title;
 
 		return (

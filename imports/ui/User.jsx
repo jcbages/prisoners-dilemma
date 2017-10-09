@@ -8,7 +8,6 @@ export default class User extends Component {
 				<div className="row">
 					<div className="col-md-7">
 						<h2>Hello again Juan, take a look at your stats&hellip;</h2>
-
 					</div>
 				</div>
 

@@ -1,7 +1,7 @@
 /* CSS declarations go here */
 #app {
 	color: #95989A;
-	font-family: Helvetica;
+	font-family: Helvetica, serif;
 	font-weight: lighter;
 }
 
@@ -51,12 +51,12 @@ ul {
 	box-shadow: 0px 1px 1px #848789;
 }
 
-#about, #help, #user {
+#about, #help, #user, #game {
 	padding-left: 3.5%;
 	padding-top: 1.9%;
 }
 
-#about h2, #help h2, #user h2 {
+#about h2, #help h2, #user h2, #game h2 {
 	font-size: 1.94em;
 	padding-bottom: 0.9%;
 }
@@ -114,6 +114,25 @@ ul {
 
 #user button:hover {
 	border: 2px solid #B7BABC;
+}
+
+#game #loading {
+	padding: 9.5% 0 6.5% 0;
+}
+
+#game #loading img {
+	margin-left: 15%;
+}
+
+#game h3 {
+	font-family: Helvetica, serif;
+	font-weight: lighter;
+	font-size: 1.4em;
+	margin-top: 13%;
+}
+
+#game h3 span {
+	color: #E4C311;
 }
 
 #footer {
