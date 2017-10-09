@@ -9,9 +9,9 @@ export default class About extends Component {
 					<h2>About the game</h2>
 
 					<p>
-						You and your partner have been arrested and imprisioned.
-						With lack of evidence to convict both, each of you’ve been
-						given the opportunity to betray the other or remain silently.
+						You and your partner have benoteen arrested and imprisioned.
+						With lack of evidence to convict both, each of you has been
+						given the opportunity to betray each other or remain silent.
 						Depeding on your choices, the following outcomes can occur&hellip;
 					</p>
 
@@ -19,17 +19,17 @@ export default class About extends Component {
 
 						<li>
 							<span className="bullet bullet-1" />
-							A & B betray &mdash;&gt; A & B serves 2 years in prison
+							A & B betray each other &mdash;&gt; A & B serve 2 years in prison
 						</li>
 
 						<li>
 							<span className="bullet bullet-2" />
-							A betray, B remains silent &mdash;&gt; A is free, B serves 3 years in prison
+							A betrays B, B remains silent &mdash;&gt; A is set free, B serves 3 years in prison
 						</li>
 
 						<li>
 							<span className="bullet bullet-3" />
-							A & B remains silent &mdash;&gt; A & B server 1 year in prison
+							A & B remain silent &mdash;&gt; A & B serve 1 year in prison
 						</li>
 
 					</ul>

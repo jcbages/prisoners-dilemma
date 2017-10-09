@@ -12,17 +12,17 @@ export default class Help extends Component {
 
 						<li>
 							<strong>Step 1</strong>
-							Register/Login using facebook at the top-right corner button.
+							Register/Login using Facebook at the button in the top-right corner.
 						</li>
 
 						<li>
 							<strong>Step 2</strong>
-							You will be assigned a random prisoner you’ll be dealing with
+							You will be assigned a random prisoner you’ll be dealing with.
 						</li>
 
 						<li>
 							<strong>Step 3</strong>
-							At each of the rounds, decide to either betray or remain silently
+							At each round, decide to either betray or remain silent.
 						</li>
 
 					</ul>
