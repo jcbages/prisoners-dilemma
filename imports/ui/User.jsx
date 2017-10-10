@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {Users} from '../api/UsersDB.jsx'
+import React, { Component } from 'react';
+import { Users } from '../api/UsersDB.jsx'
 import { createContainer } from 'meteor/react-meteor-data';
 // User component - represents the user home
 class User extends Component {
 	render() {
 		let stats;
-		if(this.props.player.totalGames === 0){
+		if (this.props.player.totalGames === 0) {
 			stats = (
 				<div className="row">
 					<div className="col-md-7">
@@ -18,7 +18,7 @@ class User extends Component {
 				<div className="row">
 					<div className="col-md-7">
 						<h3> You have played {this.props.player.totalGames} games.</h3>
-						<h3> You have spent on average {parseFloat(this.props.player.totalYears/this.props.player.totalGames).toFixed(2)} years in jail.</h3>
+						<h3> You have spent on average {parseFloat(this.props.player.totalYears / this.props.player.totalGames).toFixed(2)} years in jail.</h3>
 						<h3> Your best run had you spending {this.props.player.bestGameYears} years in jail.</h3>
 					</div>
 				</div>
@@ -35,21 +35,21 @@ class User extends Component {
 				{stats}
 
 				<div className="row">
-						<div className="col-md-1" />
+					<div className="col-md-1" />
 
-						<div className="col-md-3">
-							<button onClick={this.props.onEnterGame}>
-								Let's play!
+					<div className="col-md-3">
+						<button onClick={this.props.onEnterGame}>
+							Let's play!
 							</button>
-						</div>
+					</div>
 				</div>
 			</div>
 		);
 	}
 }
-export default createContainer (props => {
+export default createContainer(props => {
 	Meteor.subscribe('internalUsers');
 	return {
-		player: Users.findOne({facebookId: props.userId})
+		player: Users.findOne({ facebookId: props.userId })
 	}
 }, User);

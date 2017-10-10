@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 // Header component - represents the title
 class Header extends Component {
@@ -15,7 +15,7 @@ class Header extends Component {
 	getRightButton() {
 		if (!this.props.currentUser) {
 			return (
-				<a href="#" id="login" onClick={() =>(this.props.onLogin(undefined))}>
+				<a href="#" id="login" onClick={() => (this.props.onLogin(undefined))}>
 					<img src="/img/facebook.png" />
 				</a>
 			);
@@ -43,7 +43,7 @@ class Header extends Component {
 
 				<div className="col-md-8">
 					<h1>{title}</h1>
-					<hr/>
+					<hr />
 				</div>
 
 				<div className="col-md-2">
@@ -53,7 +53,7 @@ class Header extends Component {
 		);
 	}
 }
-export default createContainer (() => {
+export default createContainer(() => {
 	return {
 		currentUser: Meteor.user(),
 	}

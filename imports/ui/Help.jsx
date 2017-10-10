@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 // Help component - represents the help
 export default class Help extends Component {

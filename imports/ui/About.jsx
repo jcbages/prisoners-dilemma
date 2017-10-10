@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 // About component - represents the explanation
 export default class About extends Component {

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import Header from './Header.jsx';
 import About from './About.jsx';
@@ -7,7 +7,7 @@ import User from './User.jsx';
 import Game from './Game.jsx';
 import Footer from './Footer.jsx';
 
-import {Users} from '../api/UsersDB.jsx';
+import { Users } from '../api/UsersDB.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
 // App component - represents the whole app
@@ -26,8 +26,8 @@ class App extends Component {
 		this.enterGame = this.enterGame.bind(this);
 		this.setRound = this.setRound.bind(this);
 		this.updateGameMessage = this.updateGameMessage.bind(this);
-	
-	
+
+
 	}
 
 	getHome() {
@@ -42,59 +42,59 @@ class App extends Component {
 
 	getUserHome() {
 		return (
-			<User onEnterGame={this.enterGame} userId={this.props.currentUser.username}/>
+			<User onEnterGame={this.enterGame} userId={this.props.currentUser.username} />
 		);
 	}
 
 	getGame() {
-		
+
 		return (
 			<Game
 				isConnected={this.state.isConnected}
 				gameMessage={this.state.gameMessage}
 				footerMessage={this.state.footerMessage}
-				years={this.state.years} 
+				years={this.state.years}
 				userId={this.props.currentUser.username}
-				setRound = {this.setRound}
-				/>
+				setRound={this.setRound}
+			/>
 		);
 	}
 
 	updateGameMessage(msg) {
-		this.setState({gameMessage: msg});
+		this.setState({ gameMessage: msg });
 	}
 
 	login() {
-		Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
-            if (err) {
-                console.log('Handle errors here: ', err);
-            }
+		Meteor.loginWithFacebook({ requestPermissions: ['public_profile', 'email'] }, function (err) {
+			if (err) {
+				console.log('Handle errors here: ', err);
+			}
 		});
 	}
 
 	logout() {
 		Meteor.logout();
-		this.setState({inGame: false});
+		this.setState({ inGame: false });
 	}
 
 	setRound(number) {
-		this.setState({round: number});
+		this.setState({ round: number });
 	}
 
 	enterGame() {
 		let self = this;
-		Meteor.call('matches.findMatch', this.props.currentUser.username, (err,result) => {
-			self.setState({inGame: true, round: 1, years: 0, isConnected: false});
+		Meteor.call('matches.findMatch', this.props.currentUser.username, (err, result) => {
+			self.setState({ inGame: true, round: 1, years: 0, isConnected: false });
 			self.updateGameMessage('Please wait while we find a prisoner for you');
 		});
 	}
 
 	exitGame() {
-		this.setState({inGame: false});
+		this.setState({ inGame: false });
 	}
 
-	tryAddUser (newFacebookId, newUserName){
-		Meteor.call('users.tryAddUser',newFacebookId,newUserName);
+	tryAddUser(newFacebookId, newUserName) {
+		Meteor.call('users.tryAddUser', newFacebookId, newUserName);
 	}
 
 	render() {
@@ -128,8 +128,8 @@ class App extends Component {
 		);
 	}
 }
-export default createContainer (() => {
-	
+export default createContainer(() => {
+
 	Meteor.subscribe('userData');
 	return {
 		currentUser: Meteor.user(),
