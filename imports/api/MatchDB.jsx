@@ -88,7 +88,7 @@ Meteor.methods({
                 match.left2 = true;
             }
         } else {
-            if (username === match.user1 && !match.left2) {
+            if (username === match.user1 && !match.left2 && match.user2 !== null) {
                 Meteor.call('users.addScore', match.user1, 30);
                 match.left1 = true;
             } else if (username === match.user1) {
@@ -106,7 +106,7 @@ Meteor.methods({
                 left2: match.left2
             }
         });
-        if (match.left1 && match.left2) {
+        if ((match.left1 && match.left2) || (match.left1 && match.user2 === null)){
             Matches.remove(matchId);
         }
     }
