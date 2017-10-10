@@ -61,6 +61,11 @@ ul {
 	padding-bottom: 0.9%;
 }
 
+#about h3, #help h3, #user h3, #game h3 {
+	font-size: 1.64em;
+	padding-bottom: 0.9%;
+}
+
 #about p, #help p, #about li, #help li {
 	font-size: 1.08em;
 }

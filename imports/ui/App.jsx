@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-
+import { Meteor } from 'meteor/meteor';
 import Header from './Header.jsx';
 import About from './About.jsx';
 import Help from './Help.jsx';
 import User from './User.jsx';
 import Game from './Game.jsx';
 import Footer from './Footer.jsx';
+
+import {Users} from '../api/UsersDB.jsx'
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -15,7 +17,8 @@ export default class App extends Component {
 		this.state = {
 			inSession: false,
 			inGame: false,
-			isConnected: false
+			isConnected: false,
+			userId: "-1"
 		};
 
 		this.login = this.login.bind(this);
@@ -24,8 +27,15 @@ export default class App extends Component {
 		this.enterGame = this.enterGame.bind(this);
 
 		this.updateGameMessage = this.updateGameMessage.bind(this);
+	
+	
 	}
-
+	componentDidMount(){
+		//Burned for DB
+		//TODO: Remove when OAuth is implemented.
+		this.tryAddUser(0, "Juan C");
+		this.tryAddUser(1, "Rafael J");
+	}
 	getHome() {
 		return (
 			<div>
@@ -38,7 +48,7 @@ export default class App extends Component {
 
 	getUserHome() {
 		return (
-			<User onEnterGame={this.enterGame} />
+			<User onEnterGame={this.enterGame} userId={this.state.userId}/>
 		);
 	}
 
@@ -56,12 +66,18 @@ export default class App extends Component {
 		this.setState({gameMessage: msg});
 	}
 
-	login() {
-		this.setState({inSession: true, inGame: false});
+	login(loginUserId) {
+		//Burned for DB
+		//TODO: Remove when OAuth is implemented.
+		if(typeof loginUserId === "undefined"){
+			loginUserId = Math.floor(Math.random()*2);
+
+		}
+		this.setState({inSession: true, inGame: false, userId: loginUserId});
 	}
 
 	logout() {
-		this.setState({inSession: false, inGame: false});
+		this.setState({inSession: false, inGame: false, userId: -1});
 	}
 
 	enterGame() {
@@ -71,6 +87,10 @@ export default class App extends Component {
 
 	exitGame() {
 		this.setState({inGame: false});
+	}
+
+	tryAddUser (newFacebookId, newUserName){
+		Meteor.call('users.tryAddUser',newFacebookId,newUserName);
 	}
 
 	render() {

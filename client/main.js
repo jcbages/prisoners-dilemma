@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 
 import App from '../imports/ui/App.jsx';
 
+
 Meteor.startup(() => {
 	WebFont.load({
     	google: {families: ['Josefin Slab']},

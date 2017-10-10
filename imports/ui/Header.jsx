@@ -15,7 +15,7 @@ export default class Header extends Component {
 	getRightButton() {
 		if (!this.props.inSession) {
 			return (
-				<a href="#" id="login" onClick={this.props.onLogin}>
+				<a href="#" id="login" onClick={() =>(this.props.onLogin(undefined))}>
 					<img src="/img/facebook.png" />
 				</a>
 			);
