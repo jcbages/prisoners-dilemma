@@ -14,6 +14,7 @@ if (Meteor.isServer) {
         })
         // TODO: CHANGE THIS OR THEY HACK US!!!!
     });
+      
 }
 Accounts.onCreateUser(function (options, user) {
     
@@ -21,7 +22,9 @@ Accounts.onCreateUser(function (options, user) {
             return user;
         }
         user.facebookId  = user.services.facebook.id;
-        user.username = user.services.facebook.first_name;    
-        Meteor.call('users.tryAddUser',user.facebookId,user.username);
+        user.name = user.services.facebook.first_name; 
+        user.username = user.services.facebook.id;   
+        Meteor.call('users.tryAddUser',user.facebookId,user.name);
         return user;
 });
+

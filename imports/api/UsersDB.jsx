@@ -12,5 +12,18 @@ Meteor.methods({
                 bestGameYears: 1000000
             });
         }
+    },
+    'users.addScore'(cFacebookId, newScore){
+        let user = Users.findOne({facebookId:cFacebookId});
+        if(user !== undefined){
+            user.totalGames++;
+            user.totalYears+=newScore;
+            user.bestGameYears = Math.min(user.bestGameYears,newScore);
+            Users.update({facebookId:user.facebookId},{$set:{
+                totalYears: user.totalYears,
+                totalGames: user.totalGames,
+                bestGameYears: user.bestGameYears
+            }});
+        }
     }
 });

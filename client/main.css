@@ -121,6 +121,23 @@ ul {
 	border: 2px solid #B7BABC;
 }
 
+#game button {
+	color: #95989A;
+	width: 90%;
+	display: block;
+	margin: auto;
+	background-color: #EFEFEF;
+	padding: 12px 0;
+	font-size: 1.5em;
+	font-family: 'Josefin Slab', serif;
+	border: 2px solid #EFEFEF;
+	cursor: pointer;
+}
+
+#game button:hover {
+	border: 2px solid #B7BABC;
+}
+
 #game #loading {
 	padding: 9.5% 0 6.5% 0;
 }

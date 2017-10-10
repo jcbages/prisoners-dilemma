@@ -18,8 +18,8 @@ class User extends Component {
 				<div className="row">
 					<div className="col-md-7">
 						<h3> You have played {this.props.player.totalGames} games.</h3>
-						<h3> You have spent on average {(this.props.player.totalYears/this.props.player.totalGames)} years in jail.</h3>
-						<h3> Your best run had you spending {this.props.player.bestGameYears} in jail.</h3>
+						<h3> You have spent on average {parseFloat(this.props.player.totalYears/this.props.player.totalGames).toFixed(2)} years in jail.</h3>
+						<h3> Your best run had you spending {this.props.player.bestGameYears} years in jail.</h3>
 					</div>
 				</div>
 			);
@@ -39,7 +39,7 @@ class User extends Component {
 
 						<div className="col-md-3">
 							<button onClick={this.props.onEnterGame}>
-								Let's play again!
+								Let's play!
 							</button>
 						</div>
 				</div>
@@ -48,6 +48,7 @@ class User extends Component {
 	}
 }
 export default createContainer (props => {
+	Meteor.subscribe('internalUsers');
 	return {
 		player: Users.findOne({facebookId: props.userId})
 	}

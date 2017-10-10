@@ -24,7 +24,7 @@ class App extends Component {
 		this.logout = this.logout.bind(this);
 		this.exitGame = this.exitGame.bind(this);
 		this.enterGame = this.enterGame.bind(this);
-
+		this.setRound = this.setRound.bind(this);
 		this.updateGameMessage = this.updateGameMessage.bind(this);
 	
 	
@@ -41,19 +41,22 @@ class App extends Component {
 	}
 
 	getUserHome() {
-		console.log(this.props.currentUser);
 		return (
-			<User onEnterGame={this.enterGame} userId={this.props.currentUser.services.facebook.id}/>
+			<User onEnterGame={this.enterGame} userId={this.props.currentUser.username}/>
 		);
 	}
 
 	getGame() {
+		
 		return (
 			<Game
 				isConnected={this.state.isConnected}
 				gameMessage={this.state.gameMessage}
 				footerMessage={this.state.footerMessage}
-				years={this.state.years} />
+				years={this.state.years} 
+				userId={this.props.currentUser.username}
+				setRound = {this.setRound}
+				/>
 		);
 	}
 
@@ -67,7 +70,6 @@ class App extends Component {
                 console.log('Handle errors here: ', err);
             }
 		});
-		this.setState({})
 	}
 
 	logout() {
@@ -75,9 +77,16 @@ class App extends Component {
 		this.setState({inGame: false});
 	}
 
+	setRound(number) {
+		this.setState({round: number});
+	}
+
 	enterGame() {
-		this.setState({inGame: true, round: 1, years: 0, isConnected: false});
-		this.updateGameMessage('Please wait while we find a prisoner for you');
+		let self = this;
+		Meteor.call('matches.findMatch', this.props.currentUser.username, (err,result) => {
+			self.setState({inGame: true, round: 1, years: 0, isConnected: false});
+			self.updateGameMessage('Please wait while we find a prisoner for you');
+		});
 	}
 
 	exitGame() {
@@ -120,6 +129,8 @@ class App extends Component {
 	}
 }
 export default createContainer (() => {
+	
+	Meteor.subscribe('userData');
 	return {
 		currentUser: Meteor.user(),
 	}
