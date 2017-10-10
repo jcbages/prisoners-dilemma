@@ -9,8 +9,8 @@ if (Meteor.isServer) {
 
         ServiceConfiguration.configurations.insert({
             service: "facebook",
-            appId: '289359341579238',
-            secret: 'c9975230554d1c8a6e45512409a3a93b'
+            appId: process.env.APP_ID,
+            secret: process.env.APP_SECRET
         })
         // TODO: CHANGE THIS OR THEY HACK US!!!!
     });
@@ -27,4 +27,3 @@ Accounts.onCreateUser(function (options, user) {
     Meteor.call('users.tryAddUser', user.facebookId, user.name);
     return user;
 });
-
