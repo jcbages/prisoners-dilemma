@@ -7,18 +7,17 @@ import User from './User.jsx';
 import Game from './Game.jsx';
 import Footer from './Footer.jsx';
 
-import {Users} from '../api/UsersDB.jsx'
+import {Users} from '../api/UsersDB.jsx';
+import { createContainer } from 'meteor/react-meteor-data';
 
 // App component - represents the whole app
-export default class App extends Component {
+class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			inSession: false,
 			inGame: false,
-			isConnected: false,
-			userId: "-1"
+			isConnected: false
 		};
 
 		this.login = this.login.bind(this);
@@ -30,12 +29,7 @@ export default class App extends Component {
 	
 	
 	}
-	componentDidMount(){
-		//Burned for DB
-		//TODO: Remove when OAuth is implemented.
-		this.tryAddUser(0, "Juan C");
-		this.tryAddUser(1, "Rafael J");
-	}
+
 	getHome() {
 		return (
 			<div>
@@ -47,8 +41,9 @@ export default class App extends Component {
 	}
 
 	getUserHome() {
+		console.log(this.props.currentUser);
 		return (
-			<User onEnterGame={this.enterGame} userId={this.state.userId}/>
+			<User onEnterGame={this.enterGame} userId={this.props.currentUser.services.facebook.id}/>
 		);
 	}
 
@@ -66,18 +61,18 @@ export default class App extends Component {
 		this.setState({gameMessage: msg});
 	}
 
-	login(loginUserId) {
-		//Burned for DB
-		//TODO: Remove when OAuth is implemented.
-		if(typeof loginUserId === "undefined"){
-			loginUserId = Math.floor(Math.random()*2);
-
-		}
-		this.setState({inSession: true, inGame: false, userId: loginUserId});
+	login() {
+		Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
+            if (err) {
+                console.log('Handle errors here: ', err);
+            }
+		});
+		this.setState({})
 	}
 
 	logout() {
-		this.setState({inSession: false, inGame: false, userId: -1});
+		Meteor.logout();
+		this.setState({inGame: false});
 	}
 
 	enterGame() {
@@ -95,14 +90,14 @@ export default class App extends Component {
 
 	render() {
 		let content = this.getHome();
-		if (this.state.inSession && !this.state.inGame) {
+		if (this.props.currentUser && !this.state.inGame) {
 			content = this.getUserHome();
-		} else if (this.state.inSession && this.state.inGame) {
+		} else if (this.props.currentUser && this.state.inGame) {
 			content = this.getGame();
 		}
 
 		let title = null;
-		if (this.state.inSession && this.state.inGame) {
+		if (this.props.currentUser && this.state.inGame) {
 			title = `Round ${this.state.round}`;
 		}
 
@@ -110,7 +105,6 @@ export default class App extends Component {
 			<div id="app" className="container-fluid">
 				<Header
 					title={title}
-					inSession={this.state.inSession}
 					inGame={this.state.inGame}
 					onLogin={this.login}
 					onLogout={this.logout}
@@ -125,3 +119,8 @@ export default class App extends Component {
 		);
 	}
 }
+export default createContainer (() => {
+	return {
+		currentUser: Meteor.user(),
+	}
+}, App);

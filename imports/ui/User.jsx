@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Users} from '../api/UsersDB.jsx'
 import { createContainer } from 'meteor/react-meteor-data';
 // User component - represents the user home
-export class User extends Component {
+class User extends Component {
 	render() {
 		let stats;
 		if(this.props.player.totalGames === 0){

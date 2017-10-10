@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-
+import { createContainer } from 'meteor/react-meteor-data';
 // Header component - represents the title
-export default class Header extends Component {
+class Header extends Component {
 	getLeftButton() {
 		if (!this.props.inGame) return null;
 
@@ -13,7 +13,7 @@ export default class Header extends Component {
 	}
 
 	getRightButton() {
-		if (!this.props.inSession) {
+		if (!this.props.currentUser) {
 			return (
 				<a href="#" id="login" onClick={() =>(this.props.onLogin(undefined))}>
 					<img src="/img/facebook.png" />
@@ -53,3 +53,8 @@ export default class Header extends Component {
 		);
 	}
 }
+export default createContainer (() => {
+	return {
+		currentUser: Meteor.user(),
+	}
+}, Header);
