@@ -13,7 +13,7 @@
 
 ## About
 
-You and your partner have benoteen arrested and imprisioned. 
+You and your partner have been arrested and imprisioned. 
 With lack of evidence to convict both, each of you has been given 
 the opportunity to betray each other or remain silent. Depeding on 
 your choices, the following outcomes can occur&hellip;
