@@ -21,3 +21,4 @@ siyfion:webfontloader
 react-meteor-data
 accounts-facebook
 service-configuration
+autopublish
