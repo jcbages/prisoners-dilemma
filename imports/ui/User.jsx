@@ -39,7 +39,7 @@ class User extends Component {
 					</div>
 				</div>
 
-				{getStats()}
+				{this.getStats()}
 
 				<div className="row">
 					<div className="col-md-1" />
