@@ -3,6 +3,8 @@ import '../imports/api/UsersDB.jsx';
 import '../imports/api/MatchDB.jsx';
 import '../imports/startup/FacebookLogin.jsx';
 
+let connectHandler = WebApp.connectHandlers;
+
 Meteor.startup(() => {
   // code to run on server at startup
 	connectHandler.use(function (req, res, next) {
