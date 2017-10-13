@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Matches } from '../api/MatchDB.jsx'
 import { createContainer } from 'meteor/react-meteor-data';
+
 // Game component - represents the user game
 class Game extends Component {
 	constructor(props) {
@@ -10,6 +11,7 @@ class Game extends Component {
 		this.getYears = this.getYears.bind(this);
 		this.getContent = this.getContent.bind(this);
 	}
+
 	getLoading() {
 		return (
 			<div id="loading">
@@ -22,17 +24,23 @@ class Game extends Component {
 		return (
 			<div className="row">
 				<div className="col-md-4">
-					<button onClick={() => this.sendRound(0)}>Remain Silent</button>
+					<button onClick={() => this.sendRound(0)}>
+						Remain Silent
+					</button>
 				</div>
 				<div className="col-md-4">
-					<button onClick={() => this.sendRound(1)}>Betray</button>
+					<button onClick={() => this.sendRound(1)}>
+						Betray
+					</button>
 				</div>
 			</div>
 		);
 	}
+
 	sendRound(decision) {
 		Meteor.call('matches.updateMatch', this.props.match._id, this.props.userId, decision);
 	}
+
 	getMessage() {
 		let match = this.props.match;
 		if (match.decisionNumber === 10) {
@@ -51,6 +59,7 @@ class Game extends Component {
 			}
 		}
 	}
+
 	getYears() {
 		if (this.props.match.user1 === this.props.userId) {
 			return this.props.match.score1;
@@ -75,6 +84,7 @@ class Game extends Component {
 	componentWillUnmount() {
 		Meteor.call('matches.leaveMatch', this.props.match._id, this.props.userId);
 	}
+
 	render() {
 		//THIS BREAKS PATTERN HORRIBLY PLS CORRECT
 		this.props.setRound(this.props.match.decisionNumber + 1);
@@ -111,12 +121,13 @@ export default createContainer(() => {
 	Meteor.subscribe('matchinfo');
 	console.log(Matches.find().fetch());
 	console.log(Meteor.user());
-	return {
-		match: Matches.findOne({
-			$or: [
-				{ user1: Meteor.user().username },
-				{ user2: Meteor.user().username }
-			]
-		})
-	}
+
+	let matches = Matches.find({
+		$or: [
+			{ user1: Meteor.user().username },
+			{ user2: Meteor.user().username }
+		]
+	}).fetch();
+
+	return { match: matches[matches.length-1] };
 }, Game);

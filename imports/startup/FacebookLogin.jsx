@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { Users } from '../api/UsersDB.jsx'
+
 if (Meteor.isServer) {
     Meteor.startup(() => {
         ServiceConfiguration.configurations.remove({
@@ -11,13 +12,11 @@ if (Meteor.isServer) {
             service: "facebook",
             appId: process.env.APP_ID,
             secret: process.env.APP_SECRET
-        })
-        // TODO: CHANGE THIS OR THEY HACK US!!!!
+        });
     });
-
 }
-Accounts.onCreateUser(function (options, user) {
 
+Accounts.onCreateUser((options, user) => {
     if (!user.services.facebook) {
         return user;
     }

@@ -26,8 +26,6 @@ class App extends Component {
 		this.enterGame = this.enterGame.bind(this);
 		this.setRound = this.setRound.bind(this);
 		this.updateGameMessage = this.updateGameMessage.bind(this);
-
-
 	}
 
 	getHome() {
@@ -47,13 +45,9 @@ class App extends Component {
 	}
 
 	getGame() {
-
 		return (
 			<Game
-				isConnected={this.state.isConnected}
 				gameMessage={this.state.gameMessage}
-				footerMessage={this.state.footerMessage}
-				years={this.state.years}
 				userId={this.props.currentUser.username}
 				setRound={this.setRound}
 			/>
@@ -128,10 +122,8 @@ class App extends Component {
 		);
 	}
 }
-export default createContainer(() => {
 
+export default createContainer(() => {
 	Meteor.subscribe('userData');
-	return {
-		currentUser: Meteor.user(),
-	}
+	return { currentUser: Meteor.user() }
 }, App);

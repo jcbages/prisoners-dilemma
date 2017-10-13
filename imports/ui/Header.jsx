@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+
 // Header component - represents the title
 class Header extends Component {
 	getLeftButton() {
@@ -53,8 +54,7 @@ class Header extends Component {
 		);
 	}
 }
+
 export default createContainer(() => {
-	return {
-		currentUser: Meteor.user(),
-	}
+	return { currentUser: Meteor.user() }
 }, Header);

@@ -6,7 +6,7 @@ export default class Help extends Component {
 		return (
 			<div id="help" className="row">
 				<div className="col-md-7">
-					<h2>How it works?</h2>
+					<h2>How does it works?</h2>
 
 					<ul>
 
